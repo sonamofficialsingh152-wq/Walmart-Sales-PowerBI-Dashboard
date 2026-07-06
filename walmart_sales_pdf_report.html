@@ -1,0 +1,83 @@
+
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+body { font-family: Georgia, serif; background:#d9dbe1; margin:0; padding:24px; color:#1f2937; }
+.page { width: 900px; margin: 0 auto 24px auto; background:white; padding:44px 52px; box-shadow:0 10px 30px rgba(0,0,0,.12); border-radius:8px; }
+.cover { background: linear-gradient(135deg, #0f172a, #1d4ed8); color:white; }
+h1 { font-size:40px; margin:0 0 10px 0; line-height:1.08; }
+h2 { font-size:24px; margin:26px 0 12px 0; border-bottom:2px solid #e5e7eb; padding-bottom:8px; }
+p { font-size:16px; line-height:1.6; margin:10px 0; }
+.kpi-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+.kpi { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:16px; }
+.kpi .label { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#dbeafe; }
+.kpi .value { font-size:28px; font-weight:bold; margin-top:6px; }
+.table { width:100%; border-collapse: collapse; margin-top:12px; }
+.table th, .table td { border:1px solid #e5e7eb; padding:10px 12px; font-size:14px; text-align:left; }
+.table th { background:#f3f4f6; }
+.callout { background:#eff6ff; border-left:5px solid #2563eb; padding:14px 16px; margin-top:14px; }
+.footer { margin-top:22px; color:#6b7280; font-size:12px; }
+.small { font-size:14px; color:#4b5563; }
+.section-title { font-size:22px; margin-top:20px; }
+</style>
+</head>
+<body>
+<div class='page cover'>
+  <h1>Walmart Sales Analysis Report</h1>
+  <p>A PDF-style business report for executive review, with clear findings, recommended dashboard structure, and model results.</p>
+  <div class='kpi-grid'>
+    <div class='kpi'><div class='label'>Rows</div><div class='value'>6435</div></div>
+    <div class='kpi'><div class='label'>Stores</div><div class='value'>45</div></div>
+    <div class='kpi'><div class='label'>Total Sales</div><div class='value'>$6,737,218,987</div></div>
+    <div class='kpi'><div class='label'>Avg Weekly Sales</div><div class='value'>$1,046,965</div></div>
+  </div>
+</div>
+
+<div class='page'>
+  <h2>Executive summary</h2>
+  <p>The dataset includes 6,435 store-week records across 45 stores, with total sales of $6.74B. Sales are concentrated in a relatively small number of stores, and the strongest explanatory variables are Store, CPI, unemployment, temperature, and fuel price.</p>
+  <div class='callout'>Holiday weeks account for about 7.0% of observations, so the main business pattern is driven by normal trading periods rather than holiday spikes.</div>
+</div>
+
+<div class='page'>
+  <h2>Key findings</h2>
+  <p class='section-title'>1. Store concentration</p>
+  <p>A handful of stores generate a large share of sales, so ranking and comparing stores is essential for management action.</p>
+  <p class='section-title'>2. Time trends</p>
+  <p>Weekly trend analysis is the best way to show how sales evolve over the year and where holiday effects occur.</p>
+  <p class='section-title'>3. Predictive signal</p>
+  <p>The model explains a large portion of weekly sales variation, which makes it suitable for planning and prioritization.</p>
+</div>
+
+<div class='page'>
+  <h2>Modeling results</h2>
+  <table class='table'>
+    <tr><th>Model</th><th>Target</th><th>Result</th></tr>
+    <tr><td>Random Forest Regression</td><td>Weekly Sales</td><td>R² = 0.960</td></tr>
+    <tr><td>Random Forest Classification</td><td>High vs Low Sales</td><td>Accuracy = 0.947</td></tr>
+  </table>
+  <p class='small'>Interpretation: the model captures most of the sales variance, and classification performance shows the available features are highly informative.</p>
+</div>
+
+<div class='page'>
+  <h2>Recommended dashboard pages</h2>
+  <table class='table'>
+    <tr><th>Page</th><th>Main content</th></tr>
+    <tr><td>1. Executive overview</td><td>KPI cards, weekly sales trend, sales by store</td></tr>
+    <tr><td>2. Store performance</td><td>Ranked store bars, matrix, sales vs CPI, sales vs unemployment</td></tr>
+    <tr><td>3. Seasonality and timing</td><td>Month view, weekday view, holiday comparison</td></tr>
+    <tr><td>4. Drivers and correlations</td><td>Scatter plots, heatmap, key influencers</td></tr>
+  </table>
+</div>
+
+<div class='page'>
+  <h2>Recommended DAX measures</h2>
+  <p><strong>Total Sales</strong> = SUM(Walmart[Weekly_Sales])</p>
+  <p><strong>Avg Weekly Sales</strong> = AVERAGE(Walmart[Weekly_Sales])</p>
+  <p><strong>Holiday Sales</strong> = CALCULATE([Total Sales], Walmart[Holiday_Flag] = 1)</p>
+  <p><strong>Holiday Rate</strong> = DIVIDE(CALCULATE(COUNTROWS(Walmart), Walmart[Holiday_Flag] = 1), COUNTROWS(Walmart))</p>
+  <p class='footer'>Prepared for board-style review and Power BI build-out.</p>
+</div>
+</body>
+</html>

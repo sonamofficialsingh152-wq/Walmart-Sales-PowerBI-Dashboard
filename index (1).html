@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walmart Sales Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --ink: #f5f7fb;
+      --accent: #ff8c42;
+      --accent-secondary: #4cc9f0;
+      --font-title: 'Archivo Black', sans-serif;
+      --font-body: 'Space Grotesk', sans-serif;
+      --scale: 1;
+      --ease-out-expo: cubic-bezier(.16,1,.3,1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow-x: hidden; }
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { background: #0b0b0d; -webkit-font-smoothing: antialiased; }
+    .slide { position: relative; width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; scroll-snap-align: start; background: #0b0b0d; }
+    .stage { position: absolute; top: 50%; left: 50%; width: var(--stage-w); height: var(--stage-h); transform: translate(-50%, -50%) scale(var(--scale, 1)); transform-origin: center center; overflow: hidden; background: var(--bg, #ffffff); color: var(--ink, #111111); font-family: var(--font-body, sans-serif); }
+    .stage-pad { position: absolute; inset: 0; padding: 60px 72px; display: flex; flex-direction: column; }
+    .slide-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 22px; overflow: hidden; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } html { scroll-behavior: auto; } }
+    .visible .reveal { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .visible .reveal-left { opacity: 1; transform: translateX(0); }
+    .visible .reveal-scale { opacity: 1; transform: scale(1); }
+    .visible .reveal-blur { opacity: 1; filter: blur(0); }
+    .reveal, .reveal-left, .reveal-scale, .reveal-blur { opacity: 0; transition: opacity .7s var(--ease-out-expo), transform .7s var(--ease-out-expo), filter .7s var(--ease-out-expo); }
+    .reveal { transform: translateY(28px); }
+    .reveal-left { transform: translateX(-40px); }
+    .reveal-scale { transform: scale(.94); }
+    .reveal-blur { filter: blur(10px); }
+    .kicker { letter-spacing: .22em; text-transform: uppercase; color: var(--accent); font-size: 14px; font-weight: 700; }
+    h1 { font-family: var(--font-title); font-size: 66px; line-height: .96; max-width: 1050px; }
+    h2 { font-family: var(--font-title); font-size: 46px; line-height: 1.02; max-width: 1050px; }
+    .subtitle, .lede { font-size: 22px; line-height: 1.45; max-width: 980px; color: rgba(245,247,251,.88); }
+    .bullet-list { list-style: none; display: grid; gap: 14px; max-width: 1050px; }
+    .bullet-list li { font-size: 20px; line-height: 1.45; padding-left: 22px; position: relative; color: rgba(245,247,251,.92); }
+    .bullet-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-secondary); }
+    .mini-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.10); border-radius: 18px; padding: 22px; backdrop-filter: blur(8px); }
+    .mini-card h3 { font-size: 24px; margin-bottom: 10px; font-family: var(--font-title); }
+    .mini-card p { font-size: 18px; line-height: 1.45; color: rgba(245,247,251,.84); }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .stat-band { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+    .stat { min-width: 240px; border-radius: 18px; padding: 18px 20px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); }
+    .stat .label { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: rgba(245,247,251,.68); margin-bottom: 8px; }
+    .stat .value { font-size: 34px; font-weight: 700; }
+    .footer { display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: rgba(245,247,251,.6); }
+    .section-num { position: absolute; right: 72px; top: 42px; font-family: var(--font-title); font-size: 84px; color: rgba(255,255,255,.06); }
+    .chart-shell { width: 100%; height: 360px; border-radius: 22px; background: linear-gradient(180deg, rgba(76,201,240,.16), rgba(255,255,255,.05)); border: 1px solid rgba(255,255,255,.10); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .chart-shell img { width: 100%; height: 100%; object-fit: cover; }
+    .accent-box { border-left: 6px solid var(--accent); padding-left: 18px; }
+    .spark { position: absolute; inset: auto 0 0 0; height: 220px; background: radial-gradient(circle at 20% 20%, rgba(255,140,66,.18), transparent 40%), radial-gradient(circle at 80% 40%, rgba(76,201,240,.18), transparent 35%); }
+  </style>
+</head>
+<body>
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Sales story</div><div class="slide-body"><h1 class="reveal">Walmart sales grew across a broad store base, with a small set of stores doing most of the heavy lifting.</h1><p class="subtitle reveal">A concise executive view of the data, the key patterns, and the modeling signal behind weekly sales performance.</p></div><div class="footer"><span class="mark">Prepared for leadership review</span><span>01</span></div></div></div></section>
+
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Data snapshot</div><div class="section-num">01</div><div class="slide-body"><h2 class="reveal-left">The dataset covers 6,435 store-week rows across 45 stores.</h2><div class="stat-band reveal"><div class="stat"><div class="label">Rows</div><div class="value">6,435</div></div><div class="stat"><div class="label">Stores</div><div class="value">45</div></div><div class="stat"><div class="label">Total sales</div><div class="value">$6.74B</div></div><div class="stat"><div class="label">Avg weekly sales</div><div class="value">$1.05M</div></div></div><p class="lede reveal">Holiday weeks make up about 7 percent of the observations, so most of the signal comes from normal trading periods.</p></div><div class="footer"><span class="mark">Dataset overview</span><span>02</span></div></div></div></section>
+
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Executive charts</div><div class="slide-body"><h2 class="reveal-left">Weekly sales trend and store concentration are the two most useful views.</h2><div class="chart-shell reveal-scale"><div style="padding:28px;color:rgba(245,247,251,.82);font-size:24px;text-align:center;line-height:1.5;">Use the line chart for total weekly sales over time<br/>and a ranked bar chart for top stores by total sales</div></div></div><div class="footer"><span class="mark">Recommended dashboard visuals</span><span>03</span></div></div></div></section>
+
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Storyline</div><div class="slide-body"><h2 class="reveal-left">The report should answer four business questions.</h2><ul class="bullet-list reveal"><li>Which stores drive the most sales and how concentrated is performance?</li><li>How do sales move over time and around holiday periods?</li><li>Which economic drivers appear to matter most?</li><li>What features improve forecasting performance?</li></ul></div><div class="footer"><span class="mark">Narrative arc</span><span>04</span></div></div></div></section>
+
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Modeling insight</div><div class="slide-body"><h2 class="reveal-left">Store, CPI, unemployment, and temperature are the strongest predictors.</h2><div class="card-grid reveal"><div class="mini-card"><h3>Random forest regression</h3><p>R² reached 0.960, which means the feature set explains most of the sales variation.</p></div><div class="mini-card"><h3>Classification accuracy</h3><p>The high-vs-low sales model reached 0.947 accuracy with excellent separation.</p></div><div class="mini-card"><h3>Top driver</h3><p>Store identity had the largest importance, followed by macro and weather features.</p></div></div></div><div class="footer"><span class="mark">Model summary</span><span>05</span></div></div></div></section>
+
+<section class="slide"><div class="stage"><div class="stage-pad"><div class="kicker reveal">Recommended report</div><div class="slide-body"><h2 class="reveal-left">Build a Power BI report with four pages and clear action titles.</h2><ul class="bullet-list reveal"><li>Executive overview with KPI cards and a sales trend line</li><li>Store performance page with rankings and scatter plots</li><li>Seasonality page with month, weekday, and holiday comparisons</li><li>Drivers page with correlations and key influencers</li></ul></div><div class="footer"><span class="mark">Final recommendation</span><span>06</span></div></div></div></section>
+
+<script>
+class SlidePresentation {
+    constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.currentSlide = 0;
+        this.totalSlides = this.slides.length;
+        this.isAnimating = false;
+        this.touchStartY = 0;
+        this.touchEndY = 0;
+        this.setupIntersectionObserver();
+        this.setupKeyboardNav();
+        this.setupTouchNav();
+        this.setupWheelNav();
+        this.goToSlide(0);
+    }
+    setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.3 });
+        this.slides.forEach(slide => observer.observe(slide));
+    }
+    setupKeyboardNav() {
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); this.nextSlide(); }
+            else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.prevSlide(); }
+            else if (e.key === 'Home') { e.preventDefault(); this.goToSlide(0); }
+            else if (e.key === 'End') { e.preventDefault(); this.goToSlide(this.totalSlides - 1); }
+        });
+    }
+    setupTouchNav() {
+        document.addEventListener('touchstart', (e) => { this.touchStartY = e.changedTouches[0].screenY; }, { passive: true });
+        document.addEventListener('touchend', (e) => { this.touchEndY = e.changedTouches[0].screenY; const diff = this.touchStartY - this.touchEndY; if (Math.abs(diff) > 50) diff > 0 ? this.nextSlide() : this.prevSlide(); }, { passive: true });
+    }
+    setupWheelNav() {
+        let wheelTimeout;
+        document.addEventListener('wheel', (e) => { e.preventDefault(); clearTimeout(wheelTimeout); wheelTimeout = setTimeout(() => { e.deltaY > 0 ? this.nextSlide() : this.prevSlide(); }, 50); }, { passive: false });
+    }
+    goToSlide(n) { this.currentSlide = Math.max(0, Math.min(n, this.totalSlides - 1)); this.slides[this.currentSlide].scrollIntoView({ behavior: 'smooth' }); this.slides[this.currentSlide].classList.add('visible'); }
+    nextSlide() { this.goToSlide(this.currentSlide + 1); }
+    prevSlide() { this.goToSlide(this.currentSlide - 1); }
+}
+function fitStages() { var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720); document.documentElement.style.setProperty('--scale', s); }
+window.addEventListener('resize', fitStages);
+fitStages();
+new SlidePresentation();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+Walmart Sales Analysis Report
+
+Executive summary
+The dataset contains 6,435 store-week records across 45 stores and $6.74B in total sales. Sales are concentrated in a smaller set of stores, and the strongest predictors of weekly sales are Store, CPI, unemployment, temperature, and fuel price.
+
+Key findings
+- Total sales: $6.74B
+- Average weekly sales: $1.05M
+- Holiday weeks: about 7.0 percent of records
+- Regression model R2: 0.960
+- Classification model accuracy: 0.947
+
+Recommended visuals
+- Weekly sales trend line
+- Top stores bar chart
+- Seasonality view by month and weekday
+- Correlation scatter plots
+- Feature importance chart
+
+Power BI report structure
+Page 1: Executive overview
+Page 2: Store performance
+Page 3: Seasonality and timing
+Page 4: Drivers and correlations
+
+Recommended DAX measures
+- Total Sales
+- Avg Weekly Sales
+- Holiday Sales
+- Non Holiday Sales
+- Holiday Rate
+- Avg Temp
+- Avg CPI
+- Avg Unemployment

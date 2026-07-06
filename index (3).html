@@ -1,0 +1,68 @@
+
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background:#eef2f7; margin:0; padding:24px; color:#10233b; }
+.wrap { max-width: 1240px; margin:0 auto; }
+.top { background:linear-gradient(135deg,#0f172a,#1d4ed8); color:white; border-radius:24px; padding:28px 32px; box-shadow:0 14px 34px rgba(15,23,42,.25); }
+.top h1 { font-size:40px; margin-bottom:8px; }
+.top p { font-size:18px; max-width:940px; line-height:1.5; }
+.layout { display:grid; grid-template-columns: 290px 1fr; gap:18px; margin-top:18px; }
+.panel, .viz { background:white; border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.panel { padding:18px; }
+.viz { padding:18px; min-height:220px; }
+.slicer { height:44px; margin-bottom:12px; border-radius:12px; background:#e5eefb; display:flex; align-items:center; padding:0 12px; font-weight:600; color:#234; }
+.kpi-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:14px; margin-bottom:14px; }
+.kpi { border-radius:16px; padding:16px; background:#0f172a; color:white; }
+.kpi .label { font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:#cbd5e1; }
+.kpi .value { font-size:26px; font-weight:700; margin-top:8px; }
+.chart { border:1px solid #dbe4f0; border-radius:16px; height:250px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:20px; background:linear-gradient(180deg,#fbfdff,#f2f7ff); }
+.chart.small { height:180px; }
+.grid2 { display:grid; grid-template-columns:1.3fr .9fr; gap:14px; margin-top:14px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:14px; }
+.note { color:#475569; font-size:15px; line-height:1.45; margin-top:10px; }
+.heading { font-size:22px; font-weight:800; margin-bottom:10px; }
+.tag { display:inline-block; padding:6px 10px; border-radius:999px; background:#dbeafe; color:#1d4ed8; font-size:12px; font-weight:700; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class='wrap'>
+  <div class='top'>
+    <h1>Power BI Mockup - Walmart Sales Dashboard</h1>
+    <p>Client-ready layout showing exactly how the report should look in Power BI Desktop. This version is designed for executive review, store comparison, and driver analysis.</p>
+  </div>
+
+  <div class='layout'>
+    <div class='panel'>
+      <div class='tag'>Slicers</div>
+      <div class='slicer'>Store</div>
+      <div class='slicer'>Date</div>
+      <div class='slicer'>Holiday Flag</div>
+      <div class='slicer'>Month</div>
+      <div class='note'>Use these slicers across every page so users can filter by store, time period, and holiday status.</div>
+    </div>
+
+    <div class='viz'>
+      <div class='kpi-grid'>
+        <div class='kpi'><div class='label'>Total Sales</div><div class='value'>$6.74B</div></div>
+        <div class='kpi'><div class='label'>Avg Weekly Sales</div><div class='value'>$1.05M</div></div>
+        <div class='kpi'><div class='label'>Stores</div><div class='value'>45</div></div>
+        <div class='kpi'><div class='label'>Holiday Share</div><div class='value'>7.0%</div></div>
+      </div>
+      <div class='chart'>Line chart - Weekly Sales Over Time</div>
+      <div class='grid2'>
+        <div class='chart small'>Bar chart - Sales by Store</div>
+        <div class='chart small'>Card cluster - KPI summary</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='grid3'>
+    <div class='viz'><div class='heading'>Store performance</div><div class='chart small'>Ranked bar chart - Top stores</div><div class='note'>Highlight the top 10 stores and add a matrix for store-level metrics.</div></div>
+    <div class='viz'><div class='heading'>Seasonality</div><div class='chart small'>Month and weekday comparison</div><div class='note'>Show holiday and non-holiday differences to expose demand spikes.</div></div>
+    <div class='viz'><div class='heading'>Drivers</div><div class='chart small'>Scatter plots and heatmap</div><div class='note'>Use CPI, unemployment, temperature, and fuel price to explain sales variation.</div></div>
+  </div>
+</div>
+</body>
+</html>
